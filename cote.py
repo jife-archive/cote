@@ -1,16 +1,15 @@
-n = int(input("n:"))
-s=[]
+#숫자만 추출
 
-for i in range(n):
-    s.append(input("s:"))
-    s[i].upper()
-    for j in range(len(s[i])//2):
-        if s[i][j] == s[i][-1-j]:
-            print(s[j],s[-1-j])
-            break
-        else:
-            print(s[i]+"회문x")
-            break
+s = input()
+res = 0
+cnt = 0
+for i in s:
+    if i.isdecimal() == True:
+        res = res * 10 + int(i)
+print(res)
 
-#회문 문자열 검사
-    
+for j in range(1, res+1):
+    if res % j == 0:
+        cnt += 1
+print(cnt)
+        
