@@ -1,15 +1,19 @@
-#숫자만 추출
+#카드 역배치
 
-s = input()
-res = 0
-cnt = 0
-for i in s:
-    if i.isdecimal() == True:
-        res = res * 10 + int(i)
-print(res)
+List = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+k = list(map(int, input().split()))
+if k[1] < k [0]:
+    tmp = k[0]
+    k[0] = k[1]
+    k[1] = tmp
 
-for j in range(1, res+1):
-    if res % j == 0:
-        cnt += 1
-print(cnt)
-        
+n= k[1] - k[0]
+
+for i in range(n//2):
+    List[(k[0]-1)+i],List[(k[1]-1)-i] =List[(k[1]-1)-i],List[(k[0]-1)+i]
+
+print(List)
+
+
+
+   
