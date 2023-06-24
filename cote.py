@@ -1,17 +1,11 @@
 #수 들의 합
+N, K = map(int,input().split())
+x= []
+if 1<= N <= 1000 and 1<= K <= N:
+    x = list(map(int, input().split()))
+    if len(x) != N:
+        print("Error")
+    else:
+        x.sort()
 
-import random
-nlist = []
-sum = 0
-avg = 0
-for i in range(5):
-   nlist.append(int(input()))
-
-for i in range(5):
-   sum  += nlist[i]
-   if i == 4:
-      avg = sum //5
-nlist.sort()
-print(avg)
-print(nlist[2])
-    
+print(x[-K])
