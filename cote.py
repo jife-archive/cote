@@ -1,12 +1,17 @@
 #수 들의 합
 
 import random
-n = int(input())
 nlist = []
-for i in range(n):
+sum = 0
+avg = 0
+for i in range(5):
    nlist.append(int(input()))
 
+for i in range(5):
+   sum  += nlist[i]
+   if i == 4:
+      avg = sum //5
 nlist.sort()
-
-for i in range(n):
-    print(nlist[i])
+print(avg)
+print(nlist[2])
+    
