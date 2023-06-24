@@ -1,11 +1,15 @@
-#수 들의 합
-N, K = map(int,input().split())
-x= []
-if 1<= N <= 1000 and 1<= K <= N:
-    x = list(map(int, input().split()))
-    if len(x) != N:
-        print("Error")
-    else:
-        x.sort()
 
-print(x[-K])
+import sys
+input = sys.stdin.readline
+N = int(input())
+
+Nlist = []
+if N < 1 and N >1000000:
+    print("error")
+else:
+    for i in range(N):
+        Nlist.append(int(input()))
+    for i in sorted(Nlist):
+        print(i)
+                    
+# sys.stdin.readline이 input()보다 빠르단것을 알게되었다. 흑흑 ㅠㅠ
