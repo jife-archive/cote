@@ -1,34 +1,32 @@
-#두 리스트 합치기
+#수 들의 합
 import random
 
-a = int(input())
-b =int(input())
+n = int(input())
+c = int(input())
+nlist = []
 
-alist = random.sample(range(1,100),a)
-blist = random.sample(range(1,100),b)
-alist.sort()
-blist.sort()
+for i in range(n):
+    nlist.append(random.randint(1,c))
 
-#sumlist = alist + blist
-#sumlist.sort()  시간복잡도 때문에 다른거 사용
-
-p1 = 0
-p2 = 0 
-sumlist = []
-
-while p1< len(alist) and p2<len(blist):
-    if alist[p1] <= blist[p2]:
-        sumlist.append(alist[p1])
-        p1 += 1
+lt = 0
+rt = 1
+cnt = 0
+tot = nlist[0]
+while 1:
+    if tot < c:
+        if rt < n:
+            tot += nlist[rt]
+            rt += 1
+        else:
+            break
+    elif tot == c:
+        cnt += 1
+        tot -= nlist[lt]
+        lt += 1
     else:
-        sumlist.append(blist[p2])
-        p2 += 1
-if p1< a:
-    sumlist = sumlist + alist[p1:]
-if p2 <b:
-    sumlist = sumlist + blist[p2:]
-
-print(sumlist)
+        tot -= nlist[lt]
+        lt += 1
 
 
-   
+print(nlist)
+print(cnt)
