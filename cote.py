@@ -1,28 +1,20 @@
 
 import sys
-input = sys.stdin.readline
-N = int(input())
+N = int(sys.stdin.readline())
+Nlist = [0] * 10001
 
-Nlist = [0 for _ in range(N)]
-rowsum = []
-colsum = []
-carsum = [0,0]
-if 1<=N and N<=50:
+if 1<=N and N<=10000000:
     for i in range(N):
-        Nlist[i] = list(map(int,input().split()))
-
-    rowsum = [sum(row)for row in Nlist]
-    colsum = [sum(col)for col in zip(*Nlist)]
-    for i in range(N):
-        carsum[0] += Nlist[i][i]
-        carsum[1] += Nlist[i][-1-i]
-    rowsum.sort()
-    colsum.sort()
-    carsum.sort()
-    totalsum = []
-    totalsum.append(rowsum[-1])
-    totalsum.append(colsum[-1])
-    totalsum.append(carsum[-1])
-    print(max(totalsum))
+     num = int(sys.stdin.readline())
+     Nlist[num] += 1
+     if Nlist[i] > N:
+        print("error")
+        continue
+ 
+    for i in range(10001):
+       if Nlist[i] != 0:
+          for j in range(Nlist[i]):
+             print(i)          
 else:
-    print("error")
+    print("Error")
+
