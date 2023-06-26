@@ -1,17 +1,13 @@
 
 import sys
 
-Nlist = []
 N = int(sys.stdin.readline())
+Nlist = [[]for _ in range(N)]
 
-while (N>0):
-    Nlist = Nlist + [N%10]
-    N //= 10
+for  i in range(N):
+    Nlist[i] = list(map(int, sys.stdin.readline().split()))
 
-Nlist.sort(reverse=True)
-Nlist = list(map(str, Nlist))
-a = "".join(Nlist)
-print(a)
+Nlist.sort()
 
-
-
+for i in Nlist:
+    print(i[0],i[1])
