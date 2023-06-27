@@ -2,12 +2,14 @@
 import sys
 
 N = int(sys.stdin.readline())
-Nlist = [[]for _ in range(N)]
+result = []
 
-for  i in range(N):
-    Nlist[i] = list(map(int, sys.stdin.readline().split()))
+Nlist = [sys.stdin.readline().strip() for _ in range(N)] 
 
-Nlist.sort()
 
-for i in Nlist:
-    print(i[0],i[1])
+result = list(set(Nlist))
+result.sort()
+result.sort(key=lambda x: len(x))
+
+for i in range(len(result)):
+    print(result[i])
