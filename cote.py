@@ -1,13 +1,17 @@
 import sys
 
 N = int(sys.stdin.readline())
-Nlist = [[]for _ in range(N)]
+Nlist = list(map(int, sys.stdin.readline().split()))
+M = int(sys.stdin.readline())
+Mlist = list(map(int, sys.stdin.readline().split()))
 
-for i in range(N):
-    age,name=  map(str,sys.stdin.readline().split()) 
-    Nlist[i] += int(age),name
+find = set(Nlist)
+result = []
 
-Nlist.sort(key=lambda x: x[0])
+for num in Mlist:
+    if num in find:
+        result.append(1)
+    else:
+        result.append(0)
 
-for i in Nlist:
-    print(i[0],i[1])
+print(*result)
