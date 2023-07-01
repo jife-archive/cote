@@ -1,17 +1,28 @@
 import sys
 
-N = int(sys.stdin.readline())
-Nlist = list(map(int, sys.stdin.readline().split()))
-M = int(sys.stdin.readline())
-Mlist = list(map(int, sys.stdin.readline().split()))
 
-find = set(Nlist)
-result = []
 
-for num in Mlist:
-    if num in find:
-        result.append(1)
-    else:
-        result.append(0)
+def check(checklist):
+    for i in range(9):
+        Rowchecklist = [0] * 10
+        Colchecklist = [0] * 10
+        for j in range(9):
+            Rowchecklist[checklist[i][j]] = 1
+            Colchecklist[checklist[j][i]] = 1
+        if sum(Rowchecklist) or sum(Colchecklist) != 9:
+            return False
+    for i in range(3):
+        for j in range(3):
+            groupchecklist = [0] * 10
+            for k in range(3):
+                for v in range(3):
+                    groupchecklist[checklist[i*3 + k][j*3 +v]] = 1
+            if sum(groupchecklist) != 9:
+                return False
+    return True
+Nlist = [list(map(int,sys.stdin.readline().split())) for _ in range(9)]
 
-print(*result)
+if check(Nlist):
+    print("YES")
+else:
+    print("NO")
