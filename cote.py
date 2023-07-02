@@ -1,28 +1,20 @@
+from itertools import count
 import sys
+input = sys.stdin.readline
+
+# set 사용
+s = set()
+count = 0
+n, m = map(int, input().split())
+
+for _ in range(n):
+    data = input().rstrip()
+    s.add(data) # set은 add로 데이터 추가
 
 
+for _ in range(m):
+    data = input().rstrip()
+    if data in s:
+        count+=1
 
-def check(checklist):
-    for i in range(9):
-        Rowchecklist = [0] * 10
-        Colchecklist = [0] * 10
-        for j in range(9):
-            Rowchecklist[checklist[i][j]] = 1
-            Colchecklist[checklist[j][i]] = 1
-        if sum(Rowchecklist) or sum(Colchecklist) != 9:
-            return False
-    for i in range(3):
-        for j in range(3):
-            groupchecklist = [0] * 10
-            for k in range(3):
-                for v in range(3):
-                    groupchecklist[checklist[i*3 + k][j*3 +v]] = 1
-            if sum(groupchecklist) != 9:
-                return False
-    return True
-Nlist = [list(map(int,sys.stdin.readline().split())) for _ in range(9)]
-
-if check(Nlist):
-    print("YES")
-else:
-    print("NO")
+print(count)
