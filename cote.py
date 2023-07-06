@@ -3,17 +3,21 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
+Nlist = list(input().split())
+M= int(input())
+Mlist = list(input().split())
 
-dic = {}
+cnt = {}
 
-for i in range(N):
-    name, log = input().split()
-    if log =="enter":
-        dic[name] = "enter"
+for i in Nlist:
+    if i in cnt:
+        cnt[i] +=1
     else:
-        del dic[name]
+        cnt[i] = 1
+for i in Mlist:
+    if i in cnt:
+        print(cnt[i],end=" ")
+    else:
+        print(0,end=" ")
 
-result = sorted(dic.keys(),reverse=True)
-
-for i in result:
-    print(i)
+print("")
