@@ -1,22 +1,30 @@
-let N = Int(readLine()!)!
-    var arr = [Int]()
+import Foundation
+
+let t = Int(readLine()!)!
+
+var results: [Int] = []
+
+for _ in 0..<t {
+    let k = Int(readLine()!)!
+    let fileSizes = readLine()!.split(separator: " ").map { Int($0)! }
     
-    for _ in 0..<N {
-        let x = Int(readLine()!)!
-        if x == 0 {
-            if arr.count == 0 { print(0) }
-            else {
-                var max = 0, maxIndex = 0
-                for i in 0..<arr.count {
-                    if max < arr[i] {
-                        max = arr[i]
-                        maxIndex = i
-                    }
-                }
-                arr[maxIndex] = 0
-                print(max)
+    // 비용 계산을 위한 배열 초기화
+    var costMatrix: [[Int]] = Array(repeating: Array(repeating: 0, count: k), count: k)
+    
+    for len in 2...k {
+        for i in 0...(k - len) {
+            let j = i + len - 1
+            costMatrix[i][j] = Int.max
+            for x in i..<j {
+                costMatrix[i][j] = min(costMatrix[i][j], costMatrix[i][x] + costMatrix[x + 1][j])
             }
-        } else {
-            arr.append(x)
+            costMatrix[i][j] += fileSizes[i...j].reduce(0, +)
         }
     }
+    results.append(costMatrix[0][k - 1])
+}
+
+// 결과 출력
+for result in results {
+    print(result)
+}
