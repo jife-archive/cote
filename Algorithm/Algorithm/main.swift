@@ -1,30 +1,28 @@
 import Foundation
 
-let t = Int(readLine()!)!
+let input = readLine()!.split(separator: " ").map { Int($0)! }
+let n = input[0], m = input[1], r = input[2]
+var visited = [Int](repeating: 0, count: n + 1)
+var graph = [[Int]](repeating: [], count: n + 1)
 
-var results: [Int] = []
+for _ in 0..<m {
+    let input = readLine()!.split(separator: " ").map { Int($0)! }
+    let u = input[0], v = input[1]
+    graph[u].append(v)
+    graph[v].append(u)
+}
 
-for _ in 0..<t {
-    let k = Int(readLine()!)!
-    let fileSizes = readLine()!.split(separator: " ").map { Int($0)! }
-    
-    // 비용 계산을 위한 배열 초기화
-    var costMatrix: [[Int]] = Array(repeating: Array(repeating: 0, count: k), count: k)
-    
-    for len in 2...k {
-        for i in 0...(k - len) {
-            let j = i + len - 1
-            costMatrix[i][j] = Int.max
-            for x in i..<j {
-                costMatrix[i][j] = min(costMatrix[i][j], costMatrix[i][x] + costMatrix[x + 1][j])
-            }
-            costMatrix[i][j] += fileSizes[i...j].reduce(0, +)
+var depth = 1 
+
+func dfs(node: Int) {
+    visited[node] = depth
+    for nextNode in graph[node].sorted(by: <) {
+        if visited[nextNode] == 0 {
+            depth += 1
+            dfs(node: nextNode)
         }
     }
-    results.append(costMatrix[0][k - 1])
 }
+dfs(node: r)
 
-// 결과 출력
-for result in results {
-    print(result)
-}
+print(visited[1...].map { String($0) }.joined(separator: "\n"))
