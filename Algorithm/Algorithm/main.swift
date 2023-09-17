@@ -1,5 +1,6 @@
 import Foundation
 
+
 let input = readLine()!.split(separator: " ").map { Int($0)! }
 let n = input[0], m = input[1], r = input[2]
 var visited = [Int](repeating: 0, count: n + 1)
@@ -14,15 +15,25 @@ for _ in 0..<m {
 
 var depth = 1 
 
-func dfs(node: Int) {
+func bfs(node: Int) {
+
+    var queue = [node]
+    var index = 0
     visited[node] = depth
-    for nextNode in graph[node].sorted(by: <) {
-        if visited[nextNode] == 0 {
-            depth += 1
-            dfs(node: nextNode)
+    
+    while queue.count > index {
+        let currentNode = queue[index]
+        
+        for nextNode in graph[currentNode].sorted(by: >) {
+            if visited[nextNode] == 0 {
+                depth += 1
+                visited[nextNode] = depth
+                queue.append(nextNode)
+            }
         }
+        index += 1
     }
 }
-dfs(node: r)
+bfs(node: r)
 
 print(visited[1...].map { String($0) }.joined(separator: "\n"))
